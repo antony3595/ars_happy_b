@@ -1,6 +1,57 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import heartIc from "../../images/face.png";
+import sticker1 from "../../images/pack/1.png";
+import sticker2 from "../../images/pack/2.png";
+import sticker3 from "../../images/pack/3.png";
+import sticker4 from "../../images/pack/4.png";
+import sticker5 from "../../images/pack/5.png";
+import sticker6 from "../../images/pack/6.png";
+import sticker7 from "../../images/pack/7.png";
+import sticker8 from "../../images/pack/8.png";
+import sticker9 from "../../images/pack/9.png";
+import sticker10 from "../../images/pack/10.png";
+import sticker11 from "../../images/pack/11.png";
+import sticker13 from "../../images/pack/13.png";
+import sticker14 from "../../images/pack/14.png";
+import sticker15 from "../../images/pack/15.png";
+import sticker17 from "../../images/pack/17.png";
+import sticker18 from "../../images/pack/18.png";
+import sticker21 from "../../images/pack/21.png";
+import sticker22 from "../../images/pack/22.png";
+import sticker23 from "../../images/pack/23.png";
+import sticker24 from "../../images/pack/24.png";
+import sticker25 from "../../images/pack/25.png";
+
+const stickers = [
+	sticker1,
+	sticker2,
+	sticker3,
+	sticker4,
+	sticker5,
+	sticker6,
+	sticker7,
+	sticker8,
+	sticker9,
+	sticker10,
+	sticker11,
+	sticker13,
+	sticker14,
+	sticker15,
+	sticker17,
+	sticker18,
+	sticker21,
+	sticker22,
+	sticker23,
+	sticker24,
+	sticker25,
+];
+
+function getRandomImage() {
+	const min = Math.ceil(0);
+	const max = stickers.length;
+	const randomIndex = Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
+	return stickers[randomIndex];
+}
 
 let Heart = function () {
 	this.x = 0;
@@ -8,6 +59,7 @@ let Heart = function () {
 	this.vy = 0;
 	this.vx = 0;
 	this.size = 0;
+	this.flakeImg = sticker1;
 	this.reset();
 };
 
@@ -16,7 +68,7 @@ const FacesRain = ({ setActive, triggerCoords, fiesta }) => {
 	const skyRef = useRef(null);
 
 	useEffect(() => {
-		let particleMax = 30;
+		let particleMax = 40;
 		const canvas = canvasRef.current;
 		const sky = skyRef.current;
 		let ctx = canvas.getContext("2d");
@@ -38,7 +90,7 @@ const FacesRain = ({ setActive, triggerCoords, fiesta }) => {
 			// this.y = triggerY;
 			this.vy = 1 + Math.random() * 3;
 			this.vx = 0.5 - Math.random();
-			this.size = Math.random() * 20 + 40;
+			this.size = Math.random() * 20 + 90;
 		};
 
 		function generateSnowFlakes() {
@@ -46,6 +98,9 @@ const FacesRain = ({ setActive, triggerCoords, fiesta }) => {
 			for (i = 0; i < particleMax; i++) {
 				heart = new Heart();
 				heart.reset();
+				const flakeImg = new Image();
+				flakeImg.src = getRandomImage();
+				heart.flakeImg = flakeImg;
 				hearts.push(heart);
 			}
 		}
@@ -67,9 +122,19 @@ const FacesRain = ({ setActive, triggerCoords, fiesta }) => {
 
 				ctx.globalAlpha = heart.o;
 				ctx.beginPath();
-				const flakeImg = new Image();
-				flakeImg.src = heartIc;
-				ctx.drawImage(flakeImg, heart.x, heart.y, heart.size, heart.size);
+
+				// const a =
+				ctx.drawImage(
+					heart.flakeImg,
+					heart.x,
+					heart.y,
+					heart.size,
+					heart.size * (heart.flakeImg.naturalHeight / heart.flakeImg.naturalWidth)
+				);
+				console.log(heart.flakeImg);
+				console.log(heart.flakeImg.width);
+				console.log(heart.flakeImg.height);
+				console.log("________");
 
 				ctx.closePath();
 				ctx.fill();

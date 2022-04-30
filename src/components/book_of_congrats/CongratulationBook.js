@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./book.scss";
-import anna from "../../images/anna.jpg";
+import main_photo from "../../images/main_photo.jpg";
+import dance from "../../images/dance.jpg";
 import classNames from "classnames";
 import audio from "../../dich.mp3";
 
@@ -28,25 +29,22 @@ const CongratulationBook = ({ isOpen, setOpen, setActive }) => {
 				<div className="card__image-box">
 					<div className="card__bark" />
 					<div className="card__image-box__img">
-						<img src={anna} alt="anya" />
+						<img src={main_photo} alt="Arslanbek" />
 					</div>
-					<h3 className="card__image-box__text">Нажми мне на нос</h3>
+					<h3 className="card__image-box__text">Нажми чтобы разбудить арслана</h3>
 				</div>
 				<div className="details">
-					<h4 className="color1">Дорогая Аня</h4>
+					<h4 className="color1">Арслан, родной, бактылуу бол</h4>
 					<h4 className="color2 margin">С днем рождения !!!</h4>
+					<div className="image">
+						<img src={dance} alt=""/>
+					</div>
 					<div className="text">
-						<p>Пусть я не смогу быть </p>
-						<p>с тобой в этот день,</p>
-						<p>Но я постараюсь создать атмосферу</p>
-						<p>праздника этой открыткой,</p>
-						<p>Ты на столько замечательный человек</p>
-						<p>Что все люди, находящиеся рядом</p>
-						<p>с тобой становятся счастливее,</p>
-						<p>И я желаю тебе быть самой счастливой :)</p>
 						<br />
-						<p className="text-right">С днем рождения, лисёнок!</p>
-						<p className="text-right">♥Антончик</p>
+						<br />
+						<br />
+						<p className="text-right">С днем рождения, Арсик!</p>
+						<p className="text-right">От Dev Team ♥</p>
 					</div>
 				</div>
 			</div>
